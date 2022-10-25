@@ -13,8 +13,7 @@ function App() {
   const [correctAns, setCorrectAns] = useState([])
   const [attempt, setAttempt] =useState(0)
   const [disabler,setDisabler] = useState(false) 
-  // let disabler = false
-
+  let maxQN = currentQn;
 
   const fetchData = () => {
     return fetch("https://opentdb.com/api.php?amount=10&&type=multiple")
@@ -26,12 +25,21 @@ function App() {
     fetchData()
   }, []);
 
+  maxQN = Math.max(maxQN,currentQn);
+
   function disabled(){
     
-    if(currentQn<=attempt){
+    
+
+    if(currentQn <= attempt){
       setDisabler(true);
     }
-    console.log(currentQn,attempt,disabler);
+    // else{
+    //   setDisabler(false);
+    //   console.log("YEYYYYYYYYYY");
+    // }
+    
+    console.log(currentQn,attempt,disabler,maxQN);
 }
 
   function htmlEntities(str) {

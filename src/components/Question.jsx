@@ -6,7 +6,7 @@ import { useState } from "react";
 
 function Question(props) {
 
-    const { currentQn, setCurrentQn, score, setScore, correctAns, setCorrectAns, htmlEntities } = useContext(currentQnContext)
+    const { maxQN, currentQn, setCurrentQn, score, setScore, correctAns, setCorrectAns, htmlEntities } = useContext(currentQnContext)
     const [disabler,setDisable] = useState(false)
 
     //For Shuffling the Options

@@ -5,49 +5,56 @@ import { Button } from 'semantic-ui-react';
 
 export default function Options(props) {
 
-    const { currentQn, setCurrentQn, score, setScore, correctAns, setCorrectAns, htmlEntities, attempt, setAttempt, disabled, disabler,setDisabler } = useContext(currentQnContext)
+    const {maxQN, currentQn, setCurrentQn, score, setScore, correctAns, setCorrectAns, htmlEntities, attempt, setAttempt, disabled, disabler, setDisabler } = useContext(currentQnContext)
 
     const [optionChosen, setOptionChosen] = useState("")
-    // const [disabler,setDisable] = useState(false) 
-    // let disabler =false
+    let maxQN2 = Math.max(maxQN,currentQn);
 
-    // function disabled(){
-    //     // setDisable(true)
-    //     console.log(disabler);
-    //     // setDisable(true);
-    //     disabler=true
-    //     console.log(disabler);
-    //     // if(currentQn<correctAns.length){
-            
-    //     // }
-    // }
     function prevHandler() {
-        
-        // props.statHand()
+
         setCurrentQn((prevQn) => {
-            
+
             return (prevQn - 1)
         })
-        // props.statHand()
-        disabled()
+        if (attempt < props.qNo) {
+            disabled()
+        }
+        console.log("P--> ", disabler, attempt, props.qNo);
+
     }
 
-
     function nextHandler() {
-        // props.statHand()
+
+        // if (attempt > props.qNo) {
+        //     // setDisabler(false);
+            // disabled()
+            // console.log("manish");
+        // }
+        if (maxQN2 == currentQn) {
+            setDisabler(false)
+        }
+
         if (optionChosen === htmlEntities(props.correctAns)) {
             setScore((prevScore) => {
                 return (prevScore + 5)
             })
-        }else{
+        } else {
             setScore((prevScore) => {
                 return (prevScore - 1)
             })
         }
-        
-        if (optionChosen === "") {
-            alert("Please select an Option!")
+        console.log("N-->", disabler, attempt, props.qNo);
+
+       
+
+
+        console.log(disabler);
+        if (!disabler && optionChosen === "") {
+            if (attempt < props.qNo) {
+                alert("Please select an Option!")
+            }
         } else {
+            // setDisabler(false);
             setAttempt((prevAtt) => {
                 return (prevAtt + 1)
             })
@@ -56,16 +63,20 @@ export default function Options(props) {
             })
 
             setCorrectAns((prevCorrectAns) => {
-                return [...prevCorrectAns, htmlEntities( props.correctAns)]
+                return [...prevCorrectAns, htmlEntities(props.correctAns)]
             })
 
         }
 
     }
 
-    const [opt1, opt2, opt3, opt4] = [htmlEntities(props.shuffledOptions[0]), htmlEntities(props.shuffledOptions[1]),
-                                      htmlEntities(props.shuffledOptions[2]), htmlEntities(props.shuffledOptions[3])]
 
+   
+
+    const [opt1, opt2, opt3, opt4] = [htmlEntities(props.shuffledOptions[0]), htmlEntities(props.shuffledOptions[1]),
+    htmlEntities(props.shuffledOptions[2]), htmlEntities(props.shuffledOptions[3])]
+
+   
 
 
     return (
@@ -86,9 +97,9 @@ export default function Options(props) {
             </div>
 
             <div className='btn-nxt-submit'>
-                <Button variant='contained'  sx={{ m: 2 }}  className='btn-nxt' onClick={prevHandler}>{"Previous"}</Button>
+                <Button variant='contained' sx={{ m: 2 }} className='btn-nxt' onClick={prevHandler}>{"Previous"}</Button>
                 <h2>{props.qNo - 1}/10 Completed</h2>
-                <Button variant='contained'  sx={{ m: 2 }}  className='btn-nxt' onClick={nextHandler}>{correctAns.length === 9 ? "SUBMIT" : "Next"}</Button>
+                <Button variant='contained' sx={{ m: 2 }} className='btn-nxt' onClick={nextHandler}>{correctAns.length === 9 ? "SUBMIT" : "Next"}</Button>
             </div>
 
         </>
