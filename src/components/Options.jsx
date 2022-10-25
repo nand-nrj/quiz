@@ -5,7 +5,7 @@ import { Button } from 'semantic-ui-react';
 
 export default function Options(props) {
 
-    const { currentQn, setCurrentQn, score, setScore, correctAns, setCorrectAns, htmlEntities, attempt, setAttempt, disabled } = useContext(currentQnContext)
+    const { currentQn, setCurrentQn, score, setScore, correctAns, setCorrectAns, htmlEntities, attempt, setAttempt, disabled, disabler,setDisabler } = useContext(currentQnContext)
 
     const [optionChosen, setOptionChosen] = useState("")
     // const [disabler,setDisable] = useState(false) 
@@ -72,16 +72,16 @@ export default function Options(props) {
         <>
             <div className="options">
                 <label>
-                    <input disabled={props.disabler} type="radio" name="option" id="o1" onClick={() => setOptionChosen(opt1)} />{opt1}</label>
+                    <input disabled={disabler} type="radio" name="option" id="o1" onClick={() => setOptionChosen(opt1)} />{opt1}</label>
                 <br />
                 <label>
-                    <input disabled={props.disabler} type="radio" name="option" id="o2" onClick={() => setOptionChosen(opt2)} />{opt2}</label>
+                    <input disabled={disabler} type="radio" name="option" id="o2" onClick={() => setOptionChosen(opt2)} />{opt2}</label>
                 <br />
                 <label>
-                    <input disabled={props.disabler} type="radio" name="option" id="o3" onClick={() => setOptionChosen(opt3)} />{opt3}</label>
+                    <input disabled={disabler} type="radio" name="option" id="o3" onClick={() => setOptionChosen(opt3)} />{opt3}</label>
                 <br />
                 <label>
-                    <input disabled={props.disabler} type="radio" name="option" id="o4" onClick={() => setOptionChosen(opt4)} />{opt4}</label>
+                    <input disabled={disabler} type="radio" name="option" id="o4" onClick={() => setOptionChosen(opt4)} />{opt4}</label>
 
             </div>
 
