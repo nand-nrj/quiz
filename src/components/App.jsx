@@ -27,8 +27,9 @@ function App() {
   }, []);
 
   function disabled(){
-    setDisabler(true);
+    
     if(currentQn<=attempt){
+      setDisabler(true);
     }
     console.log(currentQn,attempt,disabler);
 }
