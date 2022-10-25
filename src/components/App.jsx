@@ -54,7 +54,7 @@ function App() {
   else {
     if (currentQn !== Qns.length) {
       return (
-        <currentQnContext.Provider value={{ currentQn, setCurrentQn, score, setScore, correctAns, setCorrectAns, htmlEntities, attempt, setAttempt, disabled }}>
+        <currentQnContext.Provider value={{ currentQn, setCurrentQn, score, setScore, correctAns, setCorrectAns, htmlEntities, attempt, setAttempt, disabled, disabler,setDisabler }}>
           <Question
             // statHand={disabled}
             // status={disabler}
